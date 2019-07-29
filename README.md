@@ -10,3 +10,10 @@
 線形代数ライブラリ
 [nalgebra](https://www.nalgebra.org/)
 
+## 実行方法
+
+```
+$ git clone https://github.com/doberan/neuron_sample.git
+$ cd ./neuron_sample/
+$ cargo run
+```
