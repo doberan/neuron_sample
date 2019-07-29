@@ -1,0 +1,8 @@
+[package]
+name = "neuron_sample"
+version = "0.1.0"
+authors = ["doberan"]
+edition = "2018"
+
+[dependencies]
+nalgebra = "0.18.0"
