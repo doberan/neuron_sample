@@ -20,7 +20,8 @@ impl<'a> Neuron<'a> {
         self.data * self.weight + self.bias
     }
 
-    //
+    /// ステップ関数（段階関数）
+    /// 入力が０以下の時は０になり、０より大きいときは１になる
     pub fn step(&self) -> DMatrix<f64> {
         self.dot().map(|i| {
             match i > 0. {
@@ -30,21 +31,26 @@ impl<'a> Neuron<'a> {
         })
     }
 
-    // シグモイド関数
+    /// シグモイド関数
+    /// 入力した値が大きければ大きいほど１に近づき、小さければ小さいほど０に近づく
     pub fn sigmoid(&self) -> DMatrix<f64> {
         self.dot().map(|i| {1. / (1. + (-i).exp())})
     }
 
-    // ReLU関数
+    /// ReLU関数
+    /// 入力が０以下の時は０になり、１より大きいときは入力をそのまま出力する
     pub fn relu(&self) -> DMatrix<f64> {
         self.dot().map(|i| i.max(0.))
     }
 
-    // 恒等関数
+    /// 恒等関数
+    /// 常に入力した値と同じ値をそのまま返す
+    /// 出力層で使われる
     pub fn identify(&self) -> DMatrix<f64> {
         self.dot()
     }
 
+    /// ソフトマックス関数
     pub fn softmax(&self) -> DMatrix<f64> {
         let _dot = self.dot();
         let _max = _dot.iter().fold(0.0 / 0.0, |acc, i| i.max(acc));
